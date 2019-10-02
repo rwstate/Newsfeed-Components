@@ -36,8 +36,8 @@ let menuItems = [
 
 function createMenu (array) {
   //create elements
-  menu = document.createElement('div');
-  list = document.createElement('ul');
+  let menu = document.createElement('div');
+  let list = document.createElement('ul');
 
   //create structure
   menu.appendChild(list);
@@ -47,13 +47,13 @@ function createMenu (array) {
 
   //populate list from data
   array.forEach(item => {
-    listItem = document.createElement('li');
+    let listItem = document.createElement('li');
     listItem.textContent = item;
     list.appendChild(listItem);
   })
 
   //add show/hide functionality to menu button
-  menuButton = document.querySelector('.menu-button');
+  let menuButton = document.querySelector('.menu-button');
   menuButton.addEventListener("click", e => {
     menu.classList.toggle('menu--open')
   })
@@ -64,3 +64,4 @@ function createMenu (array) {
 //add menu to DOM
 let header = document.querySelector('.header');
 header.appendChild(createMenu(menuItems));
+

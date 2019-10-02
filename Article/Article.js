@@ -85,6 +85,24 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Cool Amazing',
+    date: 'Jan 11th, 2019',
+    firstParagraph: `beans `,
+
+    secondParagraph: `fun`,
+
+    thirdParagraph: `wow`
+  },
+  {
+    title: 'Nice',
+    date: 'Jan 12th, 2019',
+    firstParagraph: `OMG`,
+
+    secondParagraph: `oh`,
+
+    thirdParagraph: `ok`
   }
 ];
 
@@ -110,5 +128,61 @@ const data = [
   Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
 
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
-
 */
+
+function createArticle(content) {
+
+  //create elements
+  const article = document.createElement('div');
+  const title = document.createElement('h2');
+  const date = document.createElement('p');
+  const paragraph1 = document.createElement('p');
+  const paragraph2 = document.createElement('p');
+  const paragraph3 = document.createElement('p');
+  const expandButton = document.createElement('span');
+
+  // create structure
+  article.appendChild(title);
+  article.appendChild(date);
+  article.appendChild(paragraph1);
+  article.appendChild(paragraph2);
+  article.appendChild(paragraph3);
+  article.appendChild(expandButton);
+
+  //add classes
+  article.classList.add('article');
+  date.classList.add('date');
+  expandButton.classList.add('expandButton');
+
+  //set content
+  title.textContent = content.title;
+  date.textContent = content.data;
+  paragraph1.textContent = content.firstParagraph;
+  paragraph2.textContent = content.secondParagraph;
+  paragraph3.textContent = content.thirdParagraph;
+  expandButton.textContent = "Expand"
+
+  //add event listener to toggle article shown/hidden on click
+  expandButton.addEventListener("click", e => {
+    article.classList.toggle('article-open');
+  });
+
+  return article;
+}
+
+let articles = document.querySelector('.articles');
+
+// create components based on data
+let components = data.map(element => {
+  let newArticle = createArticle(element);
+
+  return newArticle;
+})
+
+// add components to DOM
+components.forEach(element => {
+  articles.appendChild(element);
+});
+
+
+
